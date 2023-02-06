@@ -24,7 +24,7 @@ const logoutUser = async (req, res) => {
     const userId = user[0].id;
     
     const loggingOut = await User.deleteToken(userId);
-    res.clearCookie("access-token");
+    res.clearCookie("access-token", {httpOnly: true, sameSite: "None", secure: true});
     res.sendStatus(204);
 };
 

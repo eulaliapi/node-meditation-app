@@ -31,7 +31,7 @@ const loginUser = async (req, res) => {
         
         
         const savedToken = await User.saveToken(accessToken, user[0].id);
-        res.cookie("access-token", accessToken);
+        res.cookie("access-token", accessToken, {httpOnly: true,  maxAge: 24 * 60 * 60 * 1000});
         res.json({access_token: accessToken });
         
 
